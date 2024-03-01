@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AtteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/register', [AtteController::class, 'register']);
+Route::get('/login', [AtteController::class, 'login']);
+
+/*納品前に必ずここからのルートに認証ミドルウェアを付ける！！*/
+Route::get('/', [AtteController::class, 'index'])->name('index');
+Route::post('/work/start', [AtteController::class, 'workStart']);
+Route::post('/work/end', [AtteController::class, 'workEnd']);
+Route::post('/break/start', [AtteController::class, 'breakStart']);
+Route::post('/break/end', [AtteController::class, 'breakEnd']);
+Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
+Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
+Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
