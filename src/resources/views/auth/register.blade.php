@@ -18,7 +18,7 @@
                     @error('name')
                         {{ $message }}
                     @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
+                    &emsp;
                 </div>
             </div>
             <div class="main-content__item">
@@ -27,7 +27,7 @@
                     @error('email')
                         {{ $message }}
                     @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
+                    &emsp;
                 </div>
             </div>
             <div class="main-content__item">
@@ -36,17 +36,11 @@
                     @error('password')
                         {{ $message }}
                     @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
+                    &emsp;
                 </div>
             </div>
             <div class="main-content__item">
                 <input class="main-content__item-input" type="password" name="password_confirmation" placeholder="確認用パスワード"/>
-                <div class="main-content__item-error">
-                    @error('password_confirmation')
-                        {{ $message }}
-                    @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
-                </div>
             </div>
             <div class="main-content__button">
                 <button class="main-content__button-submit" type="submit">会員登録</button>

@@ -1,4 +1,4 @@
-extends('layouts.app')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/attendance.css') }}"/>
@@ -32,7 +32,7 @@ extends('layouts.app')
         </div>
         <div class="search-date">
             <!--デフォルトは当日の日付だが検索で得た日付を表示-->
-            2024-03-03<!--cssコーディング後に削除-->
+            2024-03-03<!--表示するように出来た後に削除-->
         </div>
         <div class="search-item__add">
             <form class="search-form" action="/attendance/search/add" method="get">
@@ -50,20 +50,48 @@ extends('layouts.app')
                 <th>休憩時間</th>
                 <th>勤務時間</th>
             </tr>
-            <!--ここに@foreachが入る-->
+            <!--ここにforeachが入る-->
             <tr>
-                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後に削除-->
-                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後に削除-->
-                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後に削除-->
-                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後に削除-->
-                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後に削除-->
+                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
             </tr>
-            <!--ここに@endforeachが入る-->
+            <!--ここにendforeachが入る-->
+            <tr>
+                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+            </tr>
+            <tr>
+                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+            </tr>
+            <tr>
+                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+            </tr>
+            <tr>
+                <td>テスト太郎</td><!--user-idで紐付けされている名前。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>10:00:00</td><!--work_startの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>20:00:00</td><!--work_endの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>00:30:00</td><!--break_timeの値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+                <td>09:30:00</td><!--work_endからwork_startとbreak_timeを差し引いた値。td内はcssコーディング後ダミーデータでのテスト時に削除-->
+            </tr>
         </table>
     </div>
     <div class="pagination">
         <!--ここにpaginationが入る-->
-        |&lsaquo;|1|2|3|4|5|6|7|8|9|10|&rsaquo;|<!--cssコーディング後に削除-->
+        |&lsaquo;|1|2|3|4|5|6|7|8|9|10|&rsaquo;|<!--cssコーディング後ページネーション実装時に削除-->
     </div>
 </div>
 @endsection

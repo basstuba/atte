@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    margin-left: 3rem;
+}
+
+.header-yield {
+    margin-right: 3rem;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer-title {
+    margin: 1rem
+}

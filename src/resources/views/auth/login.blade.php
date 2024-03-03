@@ -18,7 +18,7 @@
                     @error('email')
                         {{ $message }}
                     @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
+                    &emsp;
                 </div>
             </div>
             <div class="main-content__item">
@@ -27,7 +27,7 @@
                     @error('password')
                         {{ $message }}
                     @enderror
-                    エラーメッセージ<!--cssのコーディングが終わったら削除-->&emsp;
+                    &emsp;
                 </div>
             </div>
             <div class="main-content__button">

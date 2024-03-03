@@ -1,0 +1,41 @@
+.main {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 3.5rem;
+}
+
+.main-title__logo {
+    margin-top: 0;
+}
+
+.main-content__item-input {
+    width: 22rem;
+    border: 2px solid #b1b1b1;
+    border-radius: 5px;
+    padding: 0.7rem;
+    background-color: #f5f5f5;
+}
+
+.main-content__item-error {
+    color: #ff3939;
+}
+
+.main-content__button-submit {
+    width: 22rem;
+    border: 1px solid #2828ff;
+    border-radius: 5px;
+    background-color: #2828ff;
+    color: #fff;
+    padding: 0.7rem;
+    margin: 1.5rem;
+    cursor: pointer;
+}
+
+.main-text {
+    color: #ababab;
+}
+
+.main-link__login {
+    text-decoration: none;
+    color: #2828ff;
+}

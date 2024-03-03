@@ -1,4 +1,4 @@
-extends('layouts.app')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}"/>
@@ -24,7 +24,7 @@ extends('layouts.app')
 @section('content')
 <div class="main">
     <div class="main-message">
-        <!--"ログインユーザー"さんお疲れ様です！と表示するように作成。CSSコーディング後下記は削除-->
+        <!--"ログインユーザー"さんお疲れ様です！と表示するように作成。表示出来るようになったら下記は削除-->
         "ログインユーザー"さんお疲れ様です！
     </div>
     <div class="main-content">
