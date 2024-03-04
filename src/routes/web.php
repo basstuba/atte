@@ -12,12 +12,11 @@ use App\Http\Controllers\AtteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/register', [AtteController::class, 'register']);
-Route::get('/login', [AtteController::class, 'login']);
-
+Route::middleware('auth')->group(function() {
+    Route::get('/', [AtteController::class, 'index'])->name('index');
+});
 /*納品前に必ずここからのルートに認証ミドルウェアを付ける！！*/
-Route::get('/', [AtteController::class, 'index'])->name('index');
+
 Route::post('/work/start', [AtteController::class, 'workStart']);
 Route::post('/work/end', [AtteController::class, 'workEnd']);
 Route::post('/break/start', [AtteController::class, 'breakStart']);
