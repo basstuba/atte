@@ -14,8 +14,8 @@ class AtteController extends Controller
     public function index() {
         $user = Auth::user();
         $now = Carbon::now();
-        $workStart = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
-        return view('index', compact('user', 'now', 'workStart'));
+        $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        return view('index', compact('user', 'now', 'work'));
     }
 
     public function workStart(Request $request) {
@@ -23,12 +23,30 @@ class AtteController extends Controller
         Time::create($workStart);
         $user = Auth::user();
         $now = Carbon::now();
-        $workStart = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
-        return view('index', compact('user', 'now', 'workStart'));
+        $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        return view('index', compact('user', 'now', 'work'));
+    }
+
+    public function breakStart(Request $request) {
+        $breakStart = $request->only(['id', 'break_start']);
+        Time::find($breakStart['id'])->update($breakStart);
+        $user = Auth::user();
+        $now = Carbon::now();
+        $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        return view('index', compact('user', 'now', 'work'));
+    }
+
+    public function breakEnd(Request $request) {
+        $breakEnd = $request->only(['id', 'break_start', 'break_end']);
+        Time::find($breakEnd['id'])->update($breakEnd);
+        $user = Auth::user();
+        $now = Carbon::now();
+        $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        return view('index', compact('user', 'now', 'work'));
     }
 
     public function workEnd(Request $request) {
-        $workEnd = $request->only(['id', 'user_id', 'date', 'work_start', 'work_end', 'break_time']);
+        $workEnd = $request->only(['id', 'work_end']);
         Time::find($workEnd['id'])->update($workEnd);
         $user = Auth::user();
         $now = Carbon::now();
