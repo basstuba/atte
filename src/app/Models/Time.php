@@ -18,6 +18,7 @@ class Time extends Model
         'break_start',
         'break_end',
         'break_time',
+        'work_time',
     ];
 
     public function user() {

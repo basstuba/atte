@@ -30,7 +30,7 @@
         <div class="main-content__work-start">
             <form class="form__work-start" action="/work/start" method="post">
                 @csrf
-                <input type="text" name="user_id" value="{{ $user['id'] }}"><!--ログインしているユーザーのuser_id-->
+                <input type="text" name="user_id" value="{{ $user['id'] }}">
                 <input type="text" name="date" value="{{ $now->format('Y-m-d') }}"><!--現在の日付-->
                 <input type="text" name="work_start" value="{{ $now->format('H:i:s') }}"><!--出勤時間-->
                 <button class="form__work-start--button" type="submit">勤務開始</button>
@@ -48,16 +48,19 @@
             <form class="form__break-end" action="/break/end" method="post">
                 @csrf
                 <input type="text" name="id" value="{{ $work['id'] ?? 'null' }}">
-                <input type="text" name="break_start" value="{{ $work['break_start'] ?? 'null' }}"><!--休憩開始時間-->
+                <input type="text" name="break_start" value="{{ $work['break_start'] ?? 'null' }}">
                 <input type="text" name="break_end" value="{{ $now->format('H:i:s') }}"><!--休憩終了時間-->
+                <input type="text" name="break_time" value="{{ $work['break_time'] ?? '00:00:01' }}"><!--前回の休憩時間-->
                 <button class="form__break-end--button" type="submit">休憩終了</button>
             </form>
         </div>
         <div class="main-content__work-end">
             <form class="form__work-end" action="/work/end" method="post">
                 @csrf
-                <input type="text" name="id" value="{{ $work['id'] ?? 'null' }}"><!--出勤時間のid-->
+                <input type="text" name="id" value="{{ $work['id'] ?? 'null' }}">
+                <input type="text" name="work_start" value="{{ $work['work_start'] ?? 'null' }}">
                 <input type="text" name="work_end" value="{{ $now->format('H:i:s') }}"><!--退勤時間-->
+                <input type="text" name="break_time" value="{{ $work['break_time'] ?? 'null' }}">
                 <button class="form__work-end--button" type="submit">勤務終了</button>
             </form>
         </div>

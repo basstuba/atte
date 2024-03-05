@@ -22,6 +22,7 @@ class CreateTimesTable extends Migration
             $table->time('break_start')->nullable();
             $table->time('break_end')->nullable();
             $table->time('break_time')->nullable();
+            $table->time('work_time')->nullable();
             $table->timestamps();
         });
     }
