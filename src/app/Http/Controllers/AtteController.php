@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Time;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 class AtteController extends Controller
 {
@@ -102,6 +103,8 @@ class AtteController extends Controller
     public function attendance() {
         $yesterday = Carbon::yesterday()->format('Y-m-d');
         $workTables = Time::with('User')->where('date', $yesterday)->paginate(5);
-        return view('attendance', compact('workTables'));
+        $workDate = $workTables->first();
+
+        return view('attendance', compact('workTables', 'workDate'));
     }
 }

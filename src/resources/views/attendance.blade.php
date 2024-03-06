@@ -31,7 +31,7 @@
             </form>
         </div>
         <div class="search-date">
-            2024-03-03<!--表示するように出来た後に削除-->
+            {{ $workDate['date'] }}
         </div>
         <div class="search-item__add">
             <form class="search-form" action="/attendance/search/add" method="get">
