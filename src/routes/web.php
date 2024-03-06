@@ -14,13 +14,13 @@ use App\Http\Controllers\AtteController;
 */
 Route::middleware('auth')->group(function() {
     Route::get('/', [AtteController::class, 'index'])->name('index');
+    Route::post('/work/start', [AtteController::class, 'workStart'])->middleware('work.start');
+    Route::post('/work/end', [AtteController::class, 'workEnd'])->middleware('work.end');
+    Route::post('/break/start', [AtteController::class, 'breakStart'])->middleware('break.start');
+    Route::post('/break/end', [AtteController::class, 'breakEnd'])->middleware('break.end');
 });
 /*納品前に必ずここからのルートに認証ミドルウェアを付ける！！*/
 
-Route::post('/work/start', [AtteController::class, 'workStart'])->middleware('work.start');
-Route::post('/work/end', [AtteController::class, 'workEnd'])->middleware('work.end');
-Route::post('/break/start', [AtteController::class, 'breakStart'])->middleware('break.start');
-Route::post('/break/end', [AtteController::class, 'breakEnd'])->middleware('break.end');
 Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
 Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
 Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);

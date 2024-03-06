@@ -57,6 +57,17 @@
     cursor: pointer;
 }
 
+.form__work-start--fake {
+    width: 100%;
+    color: #d8d8d8;
+    border: none;
+    background-color: #fff;
+    padding: 4rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .main-content__break-start {
     grid-row: 2/3;
     grid-column: 1/2;
@@ -66,6 +77,17 @@
 
 .form__break-start--button {
     width: 100%;
+    border: none;
+    background-color: #fff;
+    padding: 4rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form__break-start--fake {
+    width: 100%;
+    color: #d8d8d8;
     border: none;
     background-color: #fff;
     padding: 4rem;
@@ -91,6 +113,17 @@
     cursor: pointer;
 }
 
+.form__break-end--fake {
+    width: 100%;
+    color: #d8d8d8;
+    border: none;
+    background-color: #fff;
+    padding: 4rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .main-content__work-end {
     grid-row: 1/2;
     grid-column: 2/3;
@@ -100,6 +133,17 @@
 
 .form__work-end--button {
     width: 100%;
+    border: none;
+    background-color: #fff;
+    padding: 4rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form__work-end--fake {
+    width: 100%;
+    color: #d8d8d8;
     border: none;
     background-color: #fff;
     padding: 4rem;

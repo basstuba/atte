@@ -33,7 +33,11 @@
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <input type="hidden" name="date" value="{{ $now->format('Y-m-d') }}">
                 <input type="hidden" name="work_start">
+                @if(!empty($work['work_start']) && empty($work['work_end']))
+                <div class="form__work-start--fake">勤務開始</div>
+                @else
                 <button class="form__work-start--button" type="submit">勤務開始</button>
+                @endif
             </form>
         </div>
         <div class="main-content__break-start">
@@ -41,7 +45,11 @@
                 @csrf
                 <input type="hidden" name="id" value="{{ $work['id'] ?? 'null' }}">
                 <input type="hidden" name="break_start">
+                @if(!empty($work['break_start']) && empty($work['break_end']))
+                <div class="form__break-start--fake">休憩開始</div>
+                @else
                 <button class="form__break-start--button" type="submit">休憩開始</button>
+                @endif
             </form>
         </div>
         <div class="main-content__break-end">
@@ -50,8 +58,12 @@
                 <input type="hidden" name="id" value="{{ $work['id'] ?? 'null' }}">
                 <input type="hidden" name="break_start" value="{{ $work['break_start'] ?? 'null' }}">
                 <input type="hidden" name="break_end">
-                <input type="hidden" name="break_time" value="{{ $work['break_time'] ?? '00:00:01' }}">
+                <input type="hidden" name="break_time" value="{{ $work['break_time'] ?? '00:00:00' }}">
+                @if(!empty($work['break_start']) && empty($work['break_end']))
                 <button class="form__break-end--button" type="submit">休憩終了</button>
+                @else
+                <div class="form__break-end--fake">休憩終了</div>
+                @endif
             </form>
         </div>
         <div class="main-content__work-end">
@@ -60,8 +72,12 @@
                 <input type="hidden" name="id" value="{{ $work['id'] ?? 'null' }}">
                 <input type="hidden" name="work_start" value="{{ $work['work_start'] ?? 'null' }}">
                 <input type="hidden" name="work_end">
-                <input type="hidden" name="break_time" value="{{ $work['break_time'] ?? 'null' }}">
+                <input type="hidden" name="break_time" value="{{ $work['break_time'] ?? '00:00:00' }}">
+                @if(!empty($work['work_start']) && empty($work['work_end']))
                 <button class="form__work-end--button" type="submit">勤務終了</button>
+                @else
+                <div class="form__work-end--fake">勤務終了</div>
+                @endif
             </form>
         </div>
     </div>

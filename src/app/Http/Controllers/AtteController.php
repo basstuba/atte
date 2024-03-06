@@ -32,6 +32,7 @@ class AtteController extends Controller
 
     public function breakStart(Request $request) {
         $breakStart = $request->only(['id', 'break_start']);
+        $breakStart['break_end'] = null;
         Time::find($breakStart['id'])->update($breakStart);
 
         $user = Auth::user();
@@ -48,7 +49,7 @@ class AtteController extends Controller
         $restTimes = new Carbon($breakEnd['break_time']);
 
         $breakTime = $restStart->diffInSeconds($restEnd);
-        if($restTimes == '00:00:01') {
+        if($restTimes == '00:00:00') {
             $hours = floor($breakTime / 3600);
             $minutes = floor(($breakTime % 3600) / 60);
             $seconds = $breakTime % 60;
@@ -79,11 +80,15 @@ class AtteController extends Controller
         $seconds = $laborTime % 60;
         $laborFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
 
-        $workTime = $restTime->diffInSeconds($laborFormat);
-        $hours = floor($workTime / 3600);
-        $minutes = floor(($workTime % 3600) / 60);
-        $seconds = $workTime % 60;
-        $workFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        if($workEnd['break_time'] == '00:00:00') {
+            $workFormat = $laborFormat;
+        }else{
+            $workTime = $restTime->diffInSeconds($laborFormat);
+            $hours = floor($workTime / 3600);
+            $minutes = floor(($workTime % 3600) / 60);
+            $seconds = $workTime % 60;
+            $workFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+        }
 
         $workEnd['work_time'] = $workFormat;
         Time::find($workEnd['id'])->update($workEnd);
