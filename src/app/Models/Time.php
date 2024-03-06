@@ -22,6 +22,6 @@ class Time extends Model
     ];
 
     public function user() {
-        return $this->belongsTo('App\models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

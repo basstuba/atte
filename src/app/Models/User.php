@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
 
     public function times() {
-        return $this->hasMany('App\models\Time');
+        return $this->hasMany('App\Models\Time');
     }
 }

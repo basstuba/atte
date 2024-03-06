@@ -100,6 +100,8 @@ class AtteController extends Controller
     }
 
     public function attendance() {
-        return view('attendance');
+        $yesterday = Carbon::yesterday()->format('Y-m-d');
+        $workTables = Time::with('User')->where('date', $yesterday)->paginate(5);
+        return view('attendance', compact('workTables'));
     }
 }
