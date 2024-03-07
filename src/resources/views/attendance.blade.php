@@ -26,8 +26,9 @@
     <div class="search">
         <div class="search-item__sub">
             <form class="search-form" action="/attendance/search/sub" method="get">
-                <input type="hidden"><!--class="search-date"で表示される日付の前日-->
-                <button class="search-button" type="submit">&lt;</button>
+                <input type="hidden" name="subDay" value="{{ $subDate }}">
+                <input type="hidden" name="today" value="{{$workDate['date'] }}">
+                <button class="search-button"  name="search" type="submit">&lt;</button>
             </form>
         </div>
         <div class="search-date">
@@ -35,8 +36,9 @@
         </div>
         <div class="search-item__add">
             <form class="search-form" action="/attendance/search/add" method="get">
-                <input type="hidden"><!--class="search-date"で表示される日付の翌日-->
-                <button class="search-button" type=submit>&gt;</button>
+                <input type="hidden" name="addDay" value="{{ $addDate }}">
+                <input type="hidden" name="today" value="{{$workDate['date'] }}">
+                <button class="search-button"  name="search" type=submit>&gt;</button>
             </form>
         </div>
     </div>
@@ -61,7 +63,7 @@
         </table>
     </div>
     <div class="pagination">
-        {{ $workTables->links() }}
+        {{ $workTables->appends(['subDay' => $subDate, 'addDay' => $addDate, 'today' => $workDate['date']])->links() }}
     </div>
 </div>
 @endsection
