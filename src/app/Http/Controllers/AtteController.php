@@ -125,11 +125,10 @@ class AtteController extends Controller
 
         $sub->format('Y-m-d');
         $workTables = Time::with('User')->where('date', $sub)->paginate(5);
-        $workDate = $workTables->first();
+        $workDate['date'] = $sub->format('Y-m-d');
 
         $subBase = new Carbon($workDate['date']);
         $addBase = new Carbon($workDate['date']);
-
         $subDate = $subBase->subDay()->format('Y-m-d');
         $addDate = $addBase->addDay()->format('Y-m-d');
 
@@ -147,11 +146,10 @@ class AtteController extends Controller
 
         $add->format('Y-m-d');
         $workTables = Time::with('User')->where('date', $add)->paginate(5);
-        $workDate = $workTables->first();
+        $workDate['date'] = $add->format('Y-m-d');
 
         $subBase = new Carbon($workDate['date']);
         $addBase = new Carbon($workDate['date']);
-
         $subDate = $subBase->subDay()->format('Y-m-d');
         $addDate = $addBase->addDay()->format('Y-m-d');
 
