@@ -18,9 +18,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/work/end', [AtteController::class, 'workEnd'])->middleware('work.end');
     Route::post('/break/start', [AtteController::class, 'breakStart'])->middleware('break.start');
     Route::post('/break/end', [AtteController::class, 'breakEnd'])->middleware('break.end');
+    Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
+    Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
+    Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
 });
-/*納品前に必ずここからのルートに認証ミドルウェアを付ける！！*/
-
-Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
-Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
-Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
