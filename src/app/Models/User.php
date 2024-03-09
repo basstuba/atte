@@ -45,4 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function times() {
         return $this->hasMany('App\Models\Time');
     }
+
+    public function sendEmailVerificationNotification() {
+        $this->notify(new \App\Notifications\CustomVerifyEmail());
+    }
 }
