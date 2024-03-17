@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Time;
 use App\Models\User;
+use App\Models\Closed;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 
@@ -17,7 +18,12 @@ class AtteController extends Controller
         $now = Carbon::now();
         $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
 
-        return view('index', compact('user', 'now', 'work'));
+        if(!empty($work['id'])) {
+            $break = Closed::orderBy('id', 'desc')->where('time_id', $work['id'])->first();
+            return view('index', compact('user', 'now', 'work', 'break'));
+        }else{
+            return view('index', compact('user', 'now', 'work'));
+        }
     }
 
     public function workStart(Request $request) {
@@ -27,53 +33,70 @@ class AtteController extends Controller
         $user = Auth::user();
         $now = Carbon::now();
         $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        $break = Closed::orderBy('id', 'desc')->where('time_id', $work['id'])->first();
 
-        return view('index', compact('user', 'now', 'work'));
+        return view('index', compact('user', 'now', 'work', 'break'));
     }
 
     public function breakStart(Request $request) {
-        $breakStart = $request->only(['id', 'break_start']);
-        $breakStart['break_end'] = null;
-        Time::find($breakStart['id'])->update($breakStart);
+        $breakStart = $request->only(['time_id', 'break_start']);
+        Closed::create($breakStart);
 
         $user = Auth::user();
         $now = Carbon::now();
         $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        $break = Closed::orderBy('id', 'desc')->where('time_id', $work['id'])->first();
 
-        return view('index', compact('user', 'now', 'work'));
+        return view('index', compact('user', 'now', 'work', 'break'));
     }
 
     public function breakEnd(Request $request) {
-        $breakEnd = $request->only(['id', 'break_start', 'break_end', 'break_time']);
+        $breakEnd = $request->only(['id','time_id', 'break_start', 'break_end']);
+        $totalBreak = $request->only(['total_break']);
         $restStart = new Carbon($breakEnd['break_start']);
         $restEnd = new Carbon($breakEnd['break_end']);
-        $restTimes = new Carbon($breakEnd['break_time']);
+        $restTimes = new Carbon($totalBreak['total_break']);
 
-        $breakTime = $restStart->diffInSeconds($restEnd);
+        $breakTotal = $restStart->diffInSeconds($restEnd);
         if($restTimes == '00:00:00') {
-            $hours = floor($breakTime / 3600);
-            $minutes = floor(($breakTime % 3600) / 60);
-            $seconds = $breakTime % 60;
+            $hours = floor($breakTotal / 3600);
+            $minutes = floor(($breakTotal % 3600) / 60);
+            $seconds = $breakTotal % 60;
             $breakFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
-        }else{
-            $breakFormat = $restTimes->addSeconds($breakTime);
-        }
 
-        $breakEnd['break_time'] = $breakFormat;
-        Time::find($breakEnd['id'])->update($breakEnd);
+            $total['total_break'] = $breakFormat;
+            Time::find($breakEnd['time_id'])->update($total);
+
+            $breakEnd['break_time'] = $breakFormat;
+            Closed::find($breakEnd['id'])->update($breakEnd);
+        }else{
+            $breakFormat = $restTimes->addSeconds($breakTotal);
+
+            $total['total_break'] = $breakFormat;
+            Time::find($breakEnd['time_id'])->update($total);
+
+            $hours = floor($breakTotal / 3600);
+            $minutes = floor(($breakTotal % 3600) / 60);
+            $seconds = $breakTotal % 60;
+            $closedFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+
+            $breakEnd['break_time'] = $closedFormat;
+            Closed::find($breakEnd['id'])->update($breakEnd);
+        }
 
         $user = Auth::user();
         $now = Carbon::now();
         $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
+        $break = Closed::orderBy('id', 'desc')->where('time_id', $work['id'])->first();
 
-        return view('index', compact('user', 'now', 'work'));
+        return view('index', compact('user', 'now', 'work', 'break'));
     }
 
     public function workEnd(Request $request) {
-        $workEnd = $request->only(['id', 'work_start', 'work_end', 'break_time']);
+        $workEnd = $request->only(['id', 'work_start', 'work_end', 'total_break']);
         $laborStart = new Carbon($workEnd['work_start']);
         $laborEnd = new Carbon($workEnd['work_end']);
-        $restTime = new Carbon($workEnd['break_time']);
+        $restTime = new Carbon($workEnd['total_break']);
 
         $laborTime = $laborStart->diffInSeconds($laborEnd);
         $hours = floor($laborTime / 3600);
@@ -81,7 +104,7 @@ class AtteController extends Controller
         $seconds = $laborTime % 60;
         $laborFormat = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
 
-        if($workEnd['break_time'] == '00:00:00') {
+        if($workEnd['total_break'] == '00:00:00') {
             $workFormat = $laborFormat;
         }else{
             $workTime = $restTime->diffInSeconds($laborFormat);
@@ -104,7 +127,11 @@ class AtteController extends Controller
         $yesterday = Carbon::yesterday()->format('Y-m-d');
 
         $workTables = Time::with('User')->where('date', $yesterday)->paginate(5);
-        $workDate = $workTables->first();
+        if(!empty($workTables['id'])) {
+            $workDate = $workTables->first();
+        }else{
+            $workDate['date'] = $yesterday;
+        }
 
         $subBase = new Carbon($yesterday);
         $addBase = new Carbon($yesterday);

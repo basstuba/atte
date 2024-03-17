@@ -15,9 +15,7 @@ class Time extends Model
         'date',
         'work_start',
         'work_end',
-        'break_start',
-        'break_end',
-        'break_time',
+        'total_break',
         'work_time',
     ];
 

@@ -56,7 +56,7 @@
                 <td>{{ $workTable['user']['name'] }}</td>
                 <td>{{ $workTable['work_start'] }}</td>
                 <td>{{ $workTable['work_end'] }}</td>
-                <td>{{ $workTable['break_time'] }}</td>
+                <td>{{ $workTable['total_break'] }}</td>
                 <td>{{ $workTable['work_time'] }}</td>
             </tr>
             @endforeach
