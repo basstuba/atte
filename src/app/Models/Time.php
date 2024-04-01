@@ -22,4 +22,8 @@ class Time extends Model
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function closeds() {
+        return $this->hasMany('App\Models\Closed');
+    }
 }

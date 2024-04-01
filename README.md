@@ -56,15 +56,15 @@ http://localhost
 
 # 環境構築
 
-1 Gitファイルをクローンする
+## 1 Gitファイルをクローンする
 
 git clone git@github.com:basstuba/atte.git
 
-2 Dockerコンテナを作成する
+## 2 Dockerコンテナを作成する
 
 docker-compose up -d --build
 
-3 Laravelパッケージをインストールする
+## 3 Laravelパッケージをインストールする
 
 docker-compose exec php bash
 
@@ -72,7 +72,7 @@ docker-compose exec php bash
 
 composer install
 
-4 .envファイルを作成する
+## 4 .envファイルを作成する
 
 PHPコンテナにログインした状態で
 
@@ -104,11 +104,17 @@ MAIL_FROM_ADDRESS=tubatest@gmail.com
 
 MAIL_FROM_NAME="${APP_NAME}"
 
-5 アプリケーション起動キーの作成
+## 5 テーブルの作成
 
 docker-compose exec php bash
 
 でPHPコンテナにログインし(ログインしたままであれば上記コマンドは実行しなくて良いです。)
+
+php artisan migrate
+
+## 6 アプリケーション起動キーの作成
+
+PHPコンテナにログインした状態で
 
 php artisan key:generate
 
