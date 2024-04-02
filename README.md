@@ -30,7 +30,7 @@ http://localhost
 
 ・個人別勤怠確認機能
 
-⋆日付別勤怠確認機能及び個人別勤怠確認機能はページネーションを使用して5件づつの表示となっています。
+**日付別勤怠確認機能及び個人別勤怠確認機能はページネーションを使用して5件づつの表示となっています。**
 
 ## 使用技術
 
@@ -56,15 +56,15 @@ http://localhost
 
 # 環境構築
 
-## 1 Gitファイルをクローンする
+### 1 Gitファイルをクローンする
 
 git clone git@github.com:basstuba/atte.git
 
-## 2 Dockerコンテナを作成する
+### 2 Dockerコンテナを作成する
 
 docker-compose up -d --build
 
-## 3 Laravelパッケージをインストールする
+### 3 Laravelパッケージをインストールする
 
 docker-compose exec php bash
 
@@ -72,7 +72,7 @@ docker-compose exec php bash
 
 composer install
 
-## 4 .envファイルを作成する
+### 4 .envファイルを作成する
 
 PHPコンテナにログインした状態で
 
@@ -104,7 +104,7 @@ MAIL_FROM_ADDRESS=tubatest@gmail.com
 
 MAIL_FROM_NAME="${APP_NAME}"
 
-## 5 テーブルの作成
+### 5 テーブルの作成
 
 docker-compose exec php bash
 
@@ -112,11 +112,19 @@ docker-compose exec php bash
 
 php artisan migrate
 
-## 6 アプリケーション起動キーの作成
+### 6 アプリケーション起動キーの作成
 
 PHPコンテナにログインした状態で
 
 php artisan key:generate
 
+## 補足
 
+認証メールはメール送受信テスト用サイトの**Mailtrap**へ送信されるように設定しています。
+
+URL-> https://mailtrap.io/inboxes
+
+こちらの*My Inbox*をクリックすると下記の画面になりメールを確認することができます。
+
+![Mailtrap確認画面](mail.png)
 
