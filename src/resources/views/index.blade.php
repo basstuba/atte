@@ -13,6 +13,9 @@
         <a class="header-nav__item-link" href="{{ route('attendance') }}">日付一覧</a>
     </div>
     <div class="header-nav__item">
+        <a class="header-nav__item-link" href="{{ route('allUser') }}">社員一覧</a>
+    </div>
+    <div class="header-nav__item">
         <form class="form-logout" action="/logout" method="post">
             @csrf
             <button class="form-logout__button" type="submit">ログアウト</button>

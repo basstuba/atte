@@ -23,6 +23,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
     Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
     Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
+    //追加実装項目分//
+    Route::get('/all/user', [AtteController::class, 'allUser'])->name('allUser');
+    Route::get('/search', [AtteController::class, 'search']);
+    Route::post('/user/list', [AtteController::class, 'userList']);
 });
 
 Route::get('/email/verify', function () {
