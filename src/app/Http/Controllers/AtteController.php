@@ -184,6 +184,15 @@ class AtteController extends Controller
     }
 
     public function allUser() {
-        return view('allUser');
+        $users = User::paginate(5);
+
+        return view('allUser', compact('users'));
+    }
+
+    public function search(Request $request) {
+        $keyword = $request->keyword;
+        $users = User::where('name', 'like', '%' . $keyword . '%')->paginate(5);
+
+        return view('allUser', compact('users'));
     }
 }

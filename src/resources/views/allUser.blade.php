@@ -30,7 +30,7 @@
         <h2 class="main-title__logo">社員一覧</h2>
     </div>
     <div class="search">
-        <form class="search-form" action="search" method="get">
+        <form class="search-form" action="/search" method="get">
             @csrf
             <div class="search-item">
                 <input class="search-item__input" type="text" name="keyword" placeholder="名前を入力してください">
@@ -45,22 +45,22 @@
             <tr>
                 <th>名前</th>
             </tr>
-            <!--ここにフォーイーチが入る-->
+            @foreach($users as $user)
             <tr>
-                <td>山本太郎</td><!--userテーブルから名前を呼び出し-->
+                <td>{{ $user['name'] }}</td>
                 <td>
                     <form class="table-form" action="/user/list" method="post">
                         @csrf
-                        <input type="hidden" name="id" value=""><!--valueにidが入る-->
+                        <input type="hidden" name="id" value="{{ $user['id'] }}">
                         <button class="table-form__button" type="submit">勤怠確認</button>
                     </form>
                 </td>
             </tr>
-            <!--ここにエンドフォーイーチが入る-->
+            @endforeach
         </table>
     </div>
     <div class="pagination">
-        <!--ここにページネーションが入る-->
+        {{ $users->links() }}
     </div>
 </div>
 @endsection
