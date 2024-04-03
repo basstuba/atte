@@ -182,4 +182,8 @@ class AtteController extends Controller
 
         return view('attendance', compact('workTables', 'workDate', 'subDate', 'addDate'));
     }
+
+    public function allUser() {
+        return view('allUser');
+    }
 }

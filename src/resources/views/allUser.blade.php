@@ -33,7 +33,7 @@
         <form class="search-form" action="search" method="get">
             @csrf
             <div class="search-item">
-                <input class="search-item__input" type="text" name="keyword">
+                <input class="search-item__input" type="text" name="keyword" placeholder="名前を入力してください">
             </div>
             <div class="search-button">
                 <button class="search-button__submit" type="submit">検索</button>
