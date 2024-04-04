@@ -27,23 +27,23 @@
 @section('content')
 <div class="main">
     <div class="user-name">
-        山本太郎<!--ユーザーの名前が入る-->
+        {{ $userName['name'] }}
     </div>
     <div class="search">
         <div class="search-item__sub">
             <form class="search-form" action="/page/month/sub" method="get">
-                <input type="hidden" name="subMonth" value=""><!--ここに先月が入る-->
-                <input type="hidden" name="thisMonth" value=""><!--ここに今月が入る-->
+                <input type="hidden" name="subMonth" value="{{ $subMonth }}">
+                <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
                 <button class="search-button" name="search" type="submit">&lt;</button>
             </form>
         </div>
         <div class="search-date">
-            <!--ここに今月が入る-->
+            {{ $monthDate }}
         </div>
         <div class="search-item__add">
             <form class="search-form" action="/page/month/add" method="get">
-                <input type="hidden" name="addMonth" value=""><!--ここに翌月が入る-->
-                <input type="hidden" name="thisMonth" value=""><!--ここに今月が入る-->
+                <input type="hidden" name="addMonth" value="{{ $addMonth }}">
+                <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
                 <button class="search-button" name="search" type=submit>&gt;</button>
             </form>
         </div>
@@ -89,6 +89,7 @@
         </table>
     </div>
     <div class="pagination">
-        <!--ここにページネーションが入る-->
+        {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'monthDate'=>$monthDate])->links() }}
     </div>
 </div>
+@endsection

@@ -195,4 +195,20 @@ class AtteController extends Controller
 
         return view('allUser', compact('users'));
     }
+
+    public function userList(Request $request) {
+        $id = $request->id;
+        $thisMonth = Carbon::today()->format('Y-m');
+        $userName = User::find($id)->first();
+
+        $lists = Time::with('closeds')->where('user_id', $id)->orWhere('date', 'like', '%' . $thisMonth . '%')->paginate(5);
+        $monthDate = Carbon::createFromFormat('Y-m', $thisMonth)->format('Y年m月度');
+
+        $subOriginal = new Carbon($thisMonth);
+        $addOriginal = new Carbon($thisMonth);
+        $subMonth = $subOriginal->subMonth()->format('Y-m');
+        $addMonth = $addOriginal->addMonth()->format('Y-m');
+
+        return view('userPage', compact('lists', 'monthDate', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
+    }
 }
