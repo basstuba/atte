@@ -54,39 +54,44 @@
                 <th class="first-th">勤務日</th>
                 <th class="first-th">勤務開始</th>
                 <th class="first-th">勤務終了</th>
-                <th class="first-th">休憩時間</th>
-                <th class="first-th">勤務時間</th>
+                <th class="first-th__break">休憩時間</th>
+                <th class="first-th__space">&emsp;</th>
+                <th class="first-th__work">勤務時間</th>
             </tr>
-            <!--ここにフォーイーチが入る-->
+            @foreach($lists as $list)
             <tr class="first-tr">
-                <td class="first-td">4月1日</td>
-                <td class="first-td">10:00:00</td>
-                <td class="first-td">18:00:00</td>
-                <td class="first-td">01:00:00</td>
-                <td class="first-td">
-                    <a class="modal-link" href="#">詳細</a><!--hrefの#の後にidが入る-->
+                <td class="first-td">{{ $list['date'] }}</td>
+                <td class="first-td">{{ $list['work_start'] }}</td>
+                <td class="first-td">{{ $list['work_end'] }}</td>
+                <td class="first-td__break">{{ $list['total_break'] }}</td>
+                <td class="first-td__detail">
+                    <a class="modal-link" href="#{{ $list['id'] }}">詳細</a>
                 </td>
-                <td class="first-td">07:00:00</td>
+                <td class="first-td__work">{{ $list['work_time'] }}</td>
             </tr>
-            <div class="modal" id=""><!--詳細と同じ値が入る-->
-                <a class="close-button" href="#">閉じる</a>
-                <table class="second-table">
-                    <tr class="second-tr">
-                        <th class="second-th">休憩開始</th>
-                        <th class="second-th">休憩終了</th>
-                        <th class="second-th">休憩時間</th>
-                    </tr>
-                    <!--ここにフォーイーチが入る-->
-                    <tr class="second-tr">
-                        <td class="second-td">11:00:00</td><!--closedsテーブルから休憩開始時間-->
-                        <td class="second-td">12:00:00</td><!--closedsテーブルから休憩終了時間-->
-                        <td class="second-td">01:00:00</td><!--closedsテーブルから休憩時間-->
-                    </tr>
-                    <!--ここにエンドフォーイーチが入る-->
-                </table>
-            </div>
-            <!--ここにエンドフォーイーチが入る-->
+            @endforeach
         </table>
+        @foreach($lists as $list)
+        <div class="modal" id="{{ $list['id'] }}">
+            <div class="modal-close">
+                <a class="close-button" href="#">閉じる</a>
+            </div>
+            <table class="second-table">
+                <tr class="second-tr">
+                    <th class="second-th">休憩開始</th>
+                    <th class="second-th">休憩終了</th>
+                    <th class="second-th">休憩時間</th>
+                </tr>
+                @foreach($list->closeds as $closed)
+                <tr class="second-tr">
+                    <td class="second-td">{{ $closed['break_start'] }}</td>
+                    <td class="second-td">{{ $closed['break_end'] }}</td>
+                    <td class="second-td">{{ $closed['break_time'] }}</td>
+                </tr>
+                @endforeach
+            </table>
+        </div>
+        @endforeach
     </div>
     <div class="pagination">
         {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'monthDate'=>$monthDate])->links() }}
