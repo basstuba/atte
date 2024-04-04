@@ -201,7 +201,53 @@ class AtteController extends Controller
         $thisMonth = Carbon::today()->format('Y-m');
         $userName = User::find($id)->first();
 
-        $lists = Time::with('closeds')->where('user_id', $id)->orWhere('date', 'like', '%' . $thisMonth . '%')->paginate(5);
+        $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
+        $monthDate = Carbon::createFromFormat('Y-m', $thisMonth)->format('Y年m月度');
+
+        $subOriginal = new Carbon($thisMonth);
+        $addOriginal = new Carbon($thisMonth);
+        $subMonth = $subOriginal->subMonth()->format('Y-m');
+        $addMonth = $addOriginal->addMonth()->format('Y-m');
+
+        return view('userPage', compact('lists', 'monthDate', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
+    }
+
+    public function monthSub(Request $request) {
+        $searchSubMonth = $request->only(['subMonth', 'thisMonth']);
+        $id = $request->only(['user']);
+        $userName = User::find($id)->first();
+
+        if($request->has('search')) {
+            $thisMonth = new Carbon($searchSubMonth['subMonth']);
+        }else{
+            $thisMonth = new Carbon($searchSubMonth['thisMonth']);
+        }
+
+        $thisMonth->format('Y-m');
+        $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
+        $monthDate = Carbon::createFromFormat('Y-m', $thisMonth)->format('Y年m月度');
+
+        $subOriginal = new Carbon($thisMonth);
+        $addOriginal = new Carbon($thisMonth);
+        $subMonth = $subOriginal->subMonth()->format('Y-m');
+        $addMonth = $addOriginal->addMonth()->format('Y-m');
+
+        return view('userPage', compact('lists', 'monthDate', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
+    }
+
+    public function monthAdd(Request $request) {
+        $searchAddMonth = $request->only(['addMonth', 'thisMonth']);
+        $id = $request->only(['user']);
+        $userName = User::find($id)->first();
+
+        if($request->has('search')) {
+            $thisMonth = new Carbon($searchAddMonth['addMonth']);
+        }else{
+            $thisMonth = new Carbon($searchAddMonth['thisMonth']);
+        }
+
+        $thisMonth->format('Y-m');
+        $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
         $monthDate = Carbon::createFromFormat('Y-m', $thisMonth)->format('Y年m月度');
 
         $subOriginal = new Carbon($thisMonth);
