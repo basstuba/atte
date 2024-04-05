@@ -14,13 +14,11 @@ class TimeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
-            'date' => '2024-03-07',
+            'user_id' => '2',
+            'date' => $this->faker->dateTimeBetween('-4 week', '-1 week'),
             'work_start' => '09:00:00',
             'work_end' => '18:00:00',
-            'break_start' => '12:00:00',
-            'break_end' => '13:00:00',
-            'break_time' => '01:00:00',
+            'total_break' => '01:00:00',
             'work_time' => '08:00:00',
         ];
     }

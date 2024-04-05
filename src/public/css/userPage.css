@@ -53,6 +53,10 @@
     font-weight: bold;
 }
 
+.main-content {
+    margin-bottom: 1rem;
+}
+
 .first-table {
     width: 60%;
     margin: 0 auto;

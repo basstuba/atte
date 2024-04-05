@@ -199,7 +199,7 @@ class AtteController extends Controller
     public function userList(Request $request) {
         $id = $request->id;
         $thisMonth = Carbon::today()->format('Y-m');
-        $userName = User::find($id)->first();
+        $userName = User::where('id', $id)->first();
 
         $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
 
@@ -214,7 +214,7 @@ class AtteController extends Controller
     public function monthSub(Request $request) {
         $searchSubMonth = $request->only(['subMonth', 'thisMonth']);
         $id = $request->only(['user']);
-        $userName = User::find($id)->first();
+        $userName = User::where('id', $id)->first();
 
         if($request->has('search')) {
             $thisMonth = $searchSubMonth['subMonth'];
@@ -235,7 +235,7 @@ class AtteController extends Controller
     public function monthAdd(Request $request) {
         $searchAddMonth = $request->only(['addMonth', 'thisMonth']);
         $id = $request->only(['user']);
-        $userName = User::find($id)->first();
+        $userName = User::where('id', $id)->first();
 
         if($request->has('search')) {
             $thisMonth = $searchAddMonth['addMonth'];
