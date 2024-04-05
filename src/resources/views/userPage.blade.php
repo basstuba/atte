@@ -39,7 +39,7 @@
             </form>
         </div>
         <div class="search-date">
-            {{ $monthDate }}
+            {{ date('Y年m月度', strtotime($thisMonth)) }}
         </div>
         <div class="search-item__add">
             <form class="search-form" action="/page/month/add" method="get">
@@ -62,7 +62,7 @@
             </tr>
             @foreach($lists as $list)
             <tr class="first-tr">
-                <td class="first-td">{{ $list['date'] }}</td>
+                <td class="first-td">{{ date('m月d日', strtotime($list['date'])) }}</td>
                 <td class="first-td">{{ $list['work_start'] }}</td>
                 <td class="first-td">{{ $list['work_end'] }}</td>
                 <td class="first-td__break">{{ $list['total_break'] }}</td>
@@ -96,7 +96,7 @@
         @endforeach
     </div>
     <div class="pagination">
-        {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'monthDate'=>$monthDate])->links() }}
+        {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'user'=>$userName['id']])->links() }}
     </div>
 </div>
 @endsection
