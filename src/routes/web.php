@@ -16,16 +16,19 @@ use Illuminate\Http\Request;
 */
 Route::middleware('verified')->group(function() {
     Route::get('/', [AtteController::class, 'index'])->name('index');
+
     Route::post('/work/start', [AtteController::class, 'workStart'])->middleware('work.start');
     Route::post('/work/end', [AtteController::class, 'workEnd'])->middleware('work.end');
     Route::post('/break/start', [AtteController::class, 'breakStart'])->middleware('break.start');
     Route::post('/break/end', [AtteController::class, 'breakEnd'])->middleware('break.end');
+
     Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
     Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
     Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
-    //追加実装項目分//
+
     Route::get('/all/user', [AtteController::class, 'allUser'])->name('allUser');
     Route::get('/search', [AtteController::class, 'search']);
+
     Route::post('/user/list', [AtteController::class, 'userList']);
     Route::get('/page/month/add', [AtteController::class, 'monthAdd']);
     Route::get('/page/month/sub', [AtteController::class, 'monthSub']);
