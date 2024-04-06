@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('auth')->group(function() {
+Route::middleware('verified')->group(function() {
     Route::get('/', [AtteController::class, 'index'])->name('index');
     Route::post('/work/start', [AtteController::class, 'workStart'])->middleware('work.start');
     Route::post('/work/end', [AtteController::class, 'workEnd'])->middleware('work.end');
@@ -30,19 +30,3 @@ Route::middleware('auth')->group(function() {
     Route::get('/page/month/add', [AtteController::class, 'monthAdd']);
     Route::get('/page/month/sub', [AtteController::class, 'monthSub']);
 });
-
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
