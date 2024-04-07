@@ -90,21 +90,30 @@ DB_PASSWORD=laravel_pass
 
 MAIL_MAILER=smtp
 
-MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_HOST=mail
 
-MAIL_PORT=2525
-
-MAIL_USERNAME=a18864a5cee5b6
-
-MAIL_PASSWORD=021f5257ce5f4e
-
-MAIL_ENCRYPTION=tls
+MAIL_PORT=1025
 
 MAIL_FROM_ADDRESS=tubatest@gmail.com
 
 MAIL_FROM_NAME="${APP_NAME}"
 
-### 5 テーブルの作成
+### 5 src/config/mail.phpの修正
+
+mail.phpファイルの36行目「mailers」からメールの設定があります。
+38行目~40行目と95行目~96行目を.envファイルと同じ設定にします。
+
+'transport' => 'smtp',
+
+'host' => env('MAIL_HOST', 'mail'),
+
+'port' => env('MAIL_PORT', 1025),
+
+'address' => env('MAIL_FROM_ADDRESS', 'tubatest@gmail.com'),
+
+'name' => env('MAIL_FROM_NAME', '${APP_NAME}'),
+
+### 6 テーブルの作成
 
 docker-compose exec php bash
 
@@ -112,7 +121,7 @@ docker-compose exec php bash
 
 php artisan migrate
 
-### 6 アプリケーション起動キーの作成
+### 7 アプリケーション起動キーの作成
 
 PHPコンテナにログインした状態で
 
@@ -120,11 +129,7 @@ php artisan key:generate
 
 ## 補足
 
-認証メールはメール送受信テスト用サイトの**Mailtrap**へ送信されるように設定しています。
+新規登録時の認証メールは**MailHog**へ送信されるように設定しています。
 
-URL-> https://mailtrap.io/inboxes
-
-こちらの*My Inbox*をクリックすると下記の画面になりメールを確認することができます。
-
-![Mailtrap確認画面](mail.png)
+URL-> http://localhost:8025
 
