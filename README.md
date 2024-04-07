@@ -94,14 +94,14 @@ MAIL_HOST=mail
 
 MAIL_PORT=1025
 
-MAIL_FROM_ADDRESS=tubatest@gmail.com
+MAIL_FROM_ADDRESS=tubatest@gmail.com（メールアドレスはご自由に設定してください。）
 
 MAIL_FROM_NAME="${APP_NAME}"
 
 ### 5 src/config/mail.phpの修正
 
 mail.phpファイルの36行目「mailers」からメールの設定があります。
-38行目~40行目と95行目~96行目を.envファイルと同じ設定にします。
+38行目～40行目と95行目～96行目を.envファイルと同じ設定にします。
 
 'transport' => 'smtp',
 
@@ -109,7 +109,7 @@ mail.phpファイルの36行目「mailers」からメールの設定がありま
 
 'port' => env('MAIL_PORT', 1025),
 
-'address' => env('MAIL_FROM_ADDRESS', 'tubatest@gmail.com'),
+'address' => env('MAIL_FROM_ADDRESS', 'tubatest@gmail.com'),（.envファイルと同じメールアドレスを設定してください。）
 
 'name' => env('MAIL_FROM_NAME', '${APP_NAME}'),
 
