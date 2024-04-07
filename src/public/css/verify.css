@@ -1,0 +1,39 @@
+.main {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 2rem;
+}
+
+.main-title__logo {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.main-content {
+    width: 55%;
+    margin: 0 auto;
+    border: 2px solid #d9d9d9;
+    border-radius: 3px;
+    background-color: #fff;
+    padding-top: 1rem;
+}
+
+.message-again {
+    font-size: larger;
+    color: #fb4242;
+    padding-bottom: 1rem;
+}
+
+.message {
+    margin-bottom: 1rem;
+}
+
+.message-form__button {
+    margin-bottom: 1rem;
+    color: #2f53f7;
+    border: none;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: large;
+    cursor: pointer;
+}
