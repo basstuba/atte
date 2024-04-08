@@ -98,22 +98,7 @@ MAIL_FROM_ADDRESS=tubatest@gmail.com（メールアドレスはご自由に設�
 
 MAIL_FROM_NAME="${APP_NAME}"
 
-### 5 src/config/mail.phpの修正
-
-mail.phpファイルの36行目「mailers」からメールの設定があります。
-38行目～40行目と95行目～96行目を.envファイルと同じ設定にします。
-
-'transport' => 'smtp',
-
-'host' => env('MAIL_HOST', 'mail'),
-
-'port' => env('MAIL_PORT', 1025),
-
-'address' => env('MAIL_FROM_ADDRESS', 'tubatest@gmail.com'),（.envファイルと同じメールアドレスを設定してください。）
-
-'name' => env('MAIL_FROM_NAME', '${APP_NAME}'),
-
-### 6 テーブルの作成
+### 5 テーブルの作成
 
 docker-compose exec php bash
 
@@ -121,7 +106,7 @@ docker-compose exec php bash
 
 php artisan migrate
 
-### 7 アプリケーション起動キーの作成
+### 6 アプリケーション起動キーの作成
 
 PHPコンテナにログインした状態で
 
