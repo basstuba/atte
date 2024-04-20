@@ -49,7 +49,7 @@
             <tr>
                 <td>{{ $user['name'] }}</td>
                 <td>
-                    <form class="table-form" action="/user/list" method="post">
+                    <form class="table-form" action="/user/list" method="get">
                         @csrf
                         <input type="hidden" name="id" value="{{ $user['id'] }}">
                         <button class="table-form__button" type="submit">勤怠確認</button>

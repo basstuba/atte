@@ -207,7 +207,7 @@ class AtteController extends Controller
 
     public function monthSub(Request $request) {
         $searchSubMonth = $request->only(['subMonth', 'thisMonth']);
-        $id = $request->only(['user']);
+        $id = $request->only(['id']);
         $userName = User::where('id', $id)->first();
 
         if($request->has('search')) {
@@ -228,7 +228,7 @@ class AtteController extends Controller
 
     public function monthAdd(Request $request) {
         $searchAddMonth = $request->only(['addMonth', 'thisMonth']);
-        $id = $request->only(['user']);
+        $id = $request->only(['id']);
         $userName = User::where('id', $id)->first();
 
         if($request->has('search')) {

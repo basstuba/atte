@@ -31,9 +31,8 @@
     </div>
     <div class="search">
         <div class="search-item__sub">
-            <form class="search-form" action="/page/month/sub" method="post">
-                @csrf
-                <input type="hidden" name="user" value="{{ $userName['id'] }}">
+            <form class="search-form" action="/page/month/sub" method="get">
+                <input type="hidden" name="id" value="{{ $userName['id'] }}">
                 <input type="hidden" name="subMonth" value="{{ $subMonth }}">
                 <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
                 <button class="search-button" name="search" type="submit">&lt;</button>
@@ -43,9 +42,8 @@
             {{ date('Y年m月度', strtotime($thisMonth)) }}
         </div>
         <div class="search-item__add">
-            <form class="search-form" action="/page/month/add" method="post">
-                @csrf
-                <input type="hidden" name="user" value="{{ $userName['id'] }}">
+            <form class="search-form" action="/page/month/add" method="get">
+                <input type="hidden" name="id" value="{{ $userName['id'] }}">
                 <input type="hidden" name="addMonth" value="{{ $addMonth }}">
                 <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
                 <button class="search-button" name="search" type=submit>&gt;</button>
@@ -98,7 +96,7 @@
         @endforeach
     </div>
     <div class="pagination">
-        {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'user'=>$userName['id']])->links() }}
+        {{ $lists->appends(['subMonth'=>$subMonth, 'addMonth'=>$addMonth, 'thisMonth'=>$thisMonth, 'id'=>$userName['id']])->links() }}
     </div>
 </div>
 @endsection

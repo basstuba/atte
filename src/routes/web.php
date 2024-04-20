@@ -29,7 +29,7 @@ Route::middleware('verified')->group(function() {
     Route::get('/all/user', [AtteController::class, 'allUser'])->name('allUser');
     Route::get('/search', [AtteController::class, 'search']);
 
-    Route::post('/user/list', [AtteController::class, 'userList']);
-    Route::post('/page/month/add', [AtteController::class, 'monthAdd']);
-    Route::post('/page/month/sub', [AtteController::class, 'monthSub']);
+    Route::get('/user/list', [AtteController::class, 'userList']);
+    Route::get('/page/month/add', [AtteController::class, 'monthAdd']);
+    Route::get('/page/month/sub', [AtteController::class, 'monthSub']);
 });
