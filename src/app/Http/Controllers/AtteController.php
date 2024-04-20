@@ -16,14 +16,8 @@ class AtteController extends Controller
     public function index() {
         $user = Auth::user();
         $now = Carbon::now();
-        $work = Time::orderBy('id', 'desc')->where('user_id', $user['id'])->first();
 
-        if(!empty($work['id'])) {
-            $break = Closed::orderBy('id', 'desc')->where('time_id', $work['id'])->first();
-            return view('index', compact('user', 'now', 'work', 'break'));
-        }else{
-            return view('index', compact('user', 'now', 'work'));
-        }
+        return view('index', compact('user', 'now'));
     }
 
     public function workStart(Request $request) {

@@ -30,6 +30,6 @@ Route::middleware('verified')->group(function() {
     Route::get('/search', [AtteController::class, 'search']);
 
     Route::post('/user/list', [AtteController::class, 'userList']);
-    Route::get('/page/month/add', [AtteController::class, 'monthAdd']);
-    Route::get('/page/month/sub', [AtteController::class, 'monthSub']);
+    Route::post('/page/month/add', [AtteController::class, 'monthAdd']);
+    Route::post('/page/month/sub', [AtteController::class, 'monthSub']);
 });

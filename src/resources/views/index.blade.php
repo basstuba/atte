@@ -48,7 +48,9 @@
                 @csrf
                 <input type="hidden" name="time_id" value="{{ $work['id'] ?? 'null' }}">
                 <input type="hidden" name="break_start">
-                @if(!empty($break['break_start']) && empty($break['break_end']))
+                @if(empty($work['work_start']))
+                <div class="form__break-start--fake">休憩開始</div>
+                @elseif(!empty($break['break_start']) && empty($break['break_end']))
                 <div class="form__break-start--fake">休憩開始</div>
                 @else
                 <button class="form__break-start--button" type="submit">休憩開始</button>

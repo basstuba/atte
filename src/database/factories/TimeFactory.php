@@ -14,7 +14,7 @@ class TimeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => '2',
+            'user_id' => $this->faker->numberBetween(1,100),
             'date' => $this->faker->dateTimeBetween('-4 week', '-1 week'),
             'work_start' => '09:00:00',
             'work_end' => '18:00:00',

@@ -31,7 +31,8 @@
     </div>
     <div class="search">
         <div class="search-item__sub">
-            <form class="search-form" action="/page/month/sub" method="get">
+            <form class="search-form" action="/page/month/sub" method="post">
+                @csrf
                 <input type="hidden" name="user" value="{{ $userName['id'] }}">
                 <input type="hidden" name="subMonth" value="{{ $subMonth }}">
                 <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
@@ -42,7 +43,8 @@
             {{ date('Y年m月度', strtotime($thisMonth)) }}
         </div>
         <div class="search-item__add">
-            <form class="search-form" action="/page/month/add" method="get">
+            <form class="search-form" action="/page/month/add" method="post">
+                @csrf
                 <input type="hidden" name="user" value="{{ $userName['id'] }}">
                 <input type="hidden" name="addMonth" value="{{ $addMonth }}">
                 <input type="hidden" name="thisMonth" value="{{ $thisMonth }}">
