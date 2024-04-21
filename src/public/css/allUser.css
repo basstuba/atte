@@ -119,6 +119,7 @@ td {
 .page-link {
     text-decoration: none;
     font-weight: bold;
+    color: #489aff;
 }
 
 .page-link:visited {
@@ -130,6 +131,7 @@ td {
     color: #fff;
 }
 
-a {
-    color: #489aff;
+.page-active {
+    color: #fff;
+    font-weight: bold;
 }
