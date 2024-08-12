@@ -22,14 +22,14 @@ Route::middleware('verified')->group(function() {
     Route::post('/break/start', [AtteController::class, 'breakStart'])->middleware('break.start');
     Route::post('/break/end', [AtteController::class, 'breakEnd'])->middleware('break.end');
 
-    Route::get('/attendance', [AtteController::class, 'attendance'])->name('attendance');
-    Route::get('/attendance/search/add', [AtteController::class, 'searchAdd']);
-    Route::get('/attendance/search/sub', [AtteController::class, 'searchSub']);
+    Route::get('/attendance', [DailyController::class, 'attendance'])->name('attendance');
+    Route::get('/attendance/search/add', [DailyController::class, 'searchAdd']);
+    Route::get('/attendance/search/sub', [DailyController::class, 'searchSub']);
 
-    Route::get('/all/user', [AtteController::class, 'allUser'])->name('allUser');
-    Route::get('/search', [AtteController::class, 'search']);
+    Route::get('/all/user', [AllUserController::class, 'allUser'])->name('allUser');
+    Route::get('/search', [AllUserController::class, 'search']);
 
-    Route::get('/user/list', [AtteController::class, 'userList']);
-    Route::get('/page/month/add', [AtteController::class, 'monthAdd']);
-    Route::get('/page/month/sub', [AtteController::class, 'monthSub']);
+    Route::get('/user/list', [AllUserController::class, 'userList']);
+    Route::get('/page/month/add', [AllUserController::class, 'monthAdd']);
+    Route::get('/page/month/sub', [AllUserController::class, 'monthSub']);
 });

@@ -26,4 +26,12 @@ class Time extends Model
     public function closeds() {
         return $this->hasMany('App\Models\Closed');
     }
+
+    public function formatTime($timeInSeconds) {
+        $hours = floor($timeInSeconds / 3600);
+        $minutes = floor(($timeInSeconds % 3600) / 60);
+        $seconds = $timeInSeconds % 60;
+
+        return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+    }
 }
