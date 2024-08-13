@@ -46,21 +46,21 @@
         </div>
     </div>
     <div class="main-content">
-        <table>
-            <tr>
-                <th>名前</th>
-                <th>勤務開始</th>
-                <th>勤務終了</th>
-                <th>休憩時間</th>
-                <th>勤務時間</th>
+        <table class="main-content__table">
+            <tr class="main-content__tr">
+                <th class="main-content__th">名前</th>
+                <th class="main-content__th">勤務開始</th>
+                <th class="main-content__th">勤務終了</th>
+                <th class="main-content__th">休憩時間</th>
+                <th class="main-content__th">勤務時間</th>
             </tr>
             @foreach($workTables as $workTable)
-            <tr>
-                <td>{{ $workTable['user']['name'] }}</td>
-                <td>{{ $workTable['work_start'] }}</td>
-                <td>{{ $workTable['work_end'] }}</td>
-                <td>{{ $workTable['total_break'] }}</td>
-                <td>{{ $workTable['work_time'] }}</td>
+            <tr class="main-content__tr">
+                <td class="main-content__td">{{ $workTable['user']['name'] }}</td>
+                <td class="main-content__td">{{ $workTable['work_start'] }}</td>
+                <td class="main-content__td">{{ $workTable['work_end'] }}</td>
+                <td class="main-content__td">{{ $workTable['total_break'] }}</td>
+                <td class="main-content__td">{{ $workTable['work_time'] }}</td>
             </tr>
             @endforeach
         </table>

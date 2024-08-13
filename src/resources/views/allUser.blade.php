@@ -41,26 +41,22 @@
         </form>
     </div>
     <div class="main-content">
-        <table>
-            <tr>
-                <th>名前</th>
+        <table class="main-content__table">
+            <tr class="main-content__tr">
+                <th class="main-content__th">名前</th>
             </tr>
             @foreach($users as $user)
-            <tr>
-                <td>{{ $user['name'] }}</td>
-                <td>
-                    <form class="table-form" action="/user/list" method="get">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $user['id'] }}">
-                        <button class="table-form__button" type="submit">勤怠確認</button>
-                    </form>
+            <tr class="main-content__tr">
+                <td class="main-content__td">{{ $user['name'] }}</td>
+                <td class="main-content__td">
+                    <a class="table-link__button" href="{{ route('userList', ['user' => $user['id']]) }}">勤怠確認</a>
                 </td>
             </tr>
             @endforeach
         </table>
     </div>
     <div class="pagination">
-        {{ $users->links() }}
+        {{ $users->appends(['keyword' => request('keyword')])->links() }}
     </div>
 </div>
 @endsection

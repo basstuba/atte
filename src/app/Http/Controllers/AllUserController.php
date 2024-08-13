@@ -23,17 +23,14 @@ class AllUserController extends Controller
         return view('allUser', compact('users'));
     }
 
-    public function userList(Request $request) {
-        $id = $request->id;
+    public function userList($userId) {
         $thisMonth = Carbon::today()->format('Y-m');
-        $userName = User::where('id', $id)->first();
+        $userName = User::where('id', $userId)->first();
 
-        $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
+        $lists = Time::with('closeds')->where('user_id', $userId)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
 
-        $subOriginal = new Carbon($thisMonth);
-        $addOriginal = new Carbon($thisMonth);
-        $subMonth = $subOriginal->subMonth()->format('Y-m');
-        $addMonth = $addOriginal->addMonth()->format('Y-m');
+        $subMonth = Time::getPreviousMonth($thisMonth);
+        $addMonth = Time::getNextMonth($thisMonth);
 
         return view('userPage', compact('lists', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
     }
@@ -51,10 +48,8 @@ class AllUserController extends Controller
 
         $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
 
-        $subOriginal = new Carbon($thisMonth);
-        $addOriginal = new Carbon($thisMonth);
-        $subMonth = $subOriginal->subMonth()->format('Y-m');
-        $addMonth = $addOriginal->addMonth()->format('Y-m');
+        $subMonth = Time::getPreviousMonth($thisMonth);
+        $addMonth = Time::getNextMonth($thisMonth);
 
         return view('userPage', compact('lists', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
     }
@@ -72,10 +67,8 @@ class AllUserController extends Controller
 
         $lists = Time::with('closeds')->where('user_id', $id)->Where('date', 'like', '%' . $thisMonth . '%')->paginate(5);
 
-        $subOriginal = new Carbon($thisMonth);
-        $addOriginal = new Carbon($thisMonth);
-        $subMonth = $subOriginal->subMonth()->format('Y-m');
-        $addMonth = $addOriginal->addMonth()->format('Y-m');
+        $subMonth = Time::getPreviousMonth($thisMonth);
+        $addMonth = Time::getNextMonth($thisMonth);
 
         return view('userPage', compact('lists', 'userName', 'thisMonth', 'subMonth', 'addMonth'));
     }

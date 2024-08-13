@@ -19,10 +19,8 @@ class DailyController extends Controller
             $workDate['date'] = $yesterday;
         }
 
-        $subBase = new Carbon($yesterday);
-        $addBase = new Carbon($yesterday);
-        $subDate = $subBase->subDay()->format('Y-m-d');
-        $addDate = $addBase->addDay()->format('Y-m-d');
+        $subDate = Time::getPreviousDate($yesterday);
+        $addDate = Time::getNextDate($yesterday);
 
         return view('attendance', compact('workTables', 'workDate', 'subDate', 'addDate'));
     }
@@ -36,14 +34,11 @@ class DailyController extends Controller
             $sub = new Carbon($searchSub['today']);
         }
 
-        $sub->format('Y-m-d');
         $workTables = Time::with('User')->where('date', $sub)->paginate(5);
         $workDate['date'] = $sub->format('Y-m-d');
 
-        $subBase = new Carbon($workDate['date']);
-        $addBase = new Carbon($workDate['date']);
-        $subDate = $subBase->subDay()->format('Y-m-d');
-        $addDate = $addBase->addDay()->format('Y-m-d');
+        $subDate = Time::getPreviousDate($workDate['date']);
+        $addDate = Time::getNextDate($workDate['date']);
 
         return view('attendance', compact('workTables', 'workDate', 'subDate', 'addDate'));
     }
@@ -57,14 +52,11 @@ class DailyController extends Controller
             $add = new Carbon($searchAdd['today']);
         }
 
-        $add->format('Y-m-d');
         $workTables = Time::with('User')->where('date', $add)->paginate(5);
         $workDate['date'] = $add->format('Y-m-d');
 
-        $subBase = new Carbon($workDate['date']);
-        $addBase = new Carbon($workDate['date']);
-        $subDate = $subBase->subDay()->format('Y-m-d');
-        $addDate = $addBase->addDay()->format('Y-m-d');
+        $subDate = Time::getPreviousDate($workDate['date']);
+        $addDate = Time::getNextDate($workDate['date']);
 
         return view('attendance', compact('workTables', 'workDate', 'subDate', 'addDate'));
     }

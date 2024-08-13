@@ -46,6 +46,10 @@
     font-size: large;
 }
 
+.search-item__input:focus-visible {
+    outline: 0;
+}
+
 .search-button__submit {
     border-radius: 3px;
     color: #fff;
@@ -60,35 +64,35 @@
     margin-bottom: 1rem;
 }
 
-table {
+.main-content__table {
     width: 60%;
     margin: 0 auto;
 }
 
-tr {
+.main-content__tr {
     border-top: 2px solid #b1b1b1;
 }
 
-th {
+.main-content__th {
     text-align: left;
     padding: 0.5rem 4rem;
     font-size: large;
 }
 
-td {
+.main-content__td {
     text-align: left;
     padding: 0.5rem 0 0.5rem 4rem;
     font-size: large;
 }
 
-.table-form__button {
+.table-link__button {
     margin-left: 33rem;
     color: #fff;
     border: 1px solid #2828ff;
     border-radius: 3px;
     background-color: #2828ff;
     padding: 0.2rem 1rem;
-    cursor: pointer;
+    text-decoration: none;
 }
 
 .pagination {

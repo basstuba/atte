@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AtteController;
+use App\Http\Controllers\DailyController;
+use App\Http\Controllers\AllUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 /*
@@ -29,7 +31,7 @@ Route::middleware('verified')->group(function() {
     Route::get('/all/user', [AllUserController::class, 'allUser'])->name('allUser');
     Route::get('/search', [AllUserController::class, 'search']);
 
-    Route::get('/user/list', [AllUserController::class, 'userList']);
+    Route::get('/user/list/{user}', [AllUserController::class, 'userList'])->name('userList');
     Route::get('/page/month/add', [AllUserController::class, 'monthAdd']);
     Route::get('/page/month/sub', [AllUserController::class, 'monthSub']);
 });

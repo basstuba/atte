@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Time extends Model
 {
@@ -33,5 +34,29 @@ class Time extends Model
         $seconds = $timeInSeconds % 60;
 
         return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+    }
+
+    public function getPreviousDate($baseDate) {
+        $subBase = new Carbon($baseDate);
+
+        return $subBase->subDay()->format('Y-m-d');
+    }
+
+    public function getNextDate($baseDate) {
+        $addBase = new Carbon($baseDate);
+
+        return $addBase->addDay()->format('Y-m-d');
+    }
+
+    public function getPreviousMonth($baseMonth) {
+        $subBaseMonth = new Carbon($baseMonth);
+
+        return $subBaseMonth->subMonth()->format('Y-m-d');
+    }
+
+    public function getNextMonth($baseMonth) {
+        $addBaseMonth = new Carbon($baseMonth);
+
+        return $addBaseMonth->addMonth()->format('Y-m-d');
     }
 }
